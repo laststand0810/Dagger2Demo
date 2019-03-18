@@ -20,12 +20,20 @@ public class ZooApp{
      */
     @Singleton
     @Component(modules = {LionCageModule.class})
-    public interface ZooComponent{
+    public interface LionCageComponent{
+        Cage caging();
+    }
+    
+    @Singleton
+    @Component(modules = {BearCageModule.class})
+    public interface BearCageComponent{
         Cage caging();
     }
     
     public static void main(String[] args){
-        ZooComponent zoo = DaggerZooApp_ZooComponent.builder().build();
-        zoo.caging().showCase();
+        LionCageComponent lionCage = DaggerZooApp_LionCageComponent.builder().build();
+        lionCage.caging().showCase();
+        BearCageComponent bearCage = DaggerZooApp_BearCageComponent.builder().build();
+        bearCage.caging().showCase();
     }
 }
